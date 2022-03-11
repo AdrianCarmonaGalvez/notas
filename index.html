@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nota asignatura</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <style>
+        input {margin: 10px;}
+        body    {background-image:url("https://centromasteralemania.files.wordpress.com/2014/11/fondo-web-azul-claro-con-blanco-v2-1280x8001.jpg");
+        background-size:100% ;
+        background-position: center;}
+        #cuadro    {background-color: rgba(98, 245, 255, 0.514);
+        margin: 5% 20% ;
+        padding: 5px 10px;
+        border-radius: 40px;}
+        #arriba {text-align: center;
+            font-size: 100%;
+            font-family: 'Trebuchet MS', sans-serif;}
+        #imagen {width: 60%;
+        margin: 0% 20% ;}
+        #resto {text-align: center;
+            font-family: 'Trebuchet MS', sans-serif;}
+    </style>
+</head>
+<body>
+    <div id="cuadro">
+        <h1 id="arriba">Calculo de la nota final de una asignatura</h1>
+        <img id="imagen" src="https://formados.bilib.es/pluginfile.php/13770/course/summary/html-css-js.jpg" alt="">
+    <!--datos -->
+    <div id="resto">
+        <form action="">
+            <label for="">Nota wordpress:</label>
+            <input type="text" id="wordpress"><br>
+            <label for="">Nota JS:</label>
+            <input type="text" id="js"><br>
+    <!-- subir nota -->
+            <input type="checkbox" name="trabajowp" id="trabajowp">
+            <label for="trabajowp">Trabajo extra de wordpress</label><br>
+            <input type="checkbox" name="trabajojs" id="trabajojs">
+            <label for="trabajojs">Trabajo extra de javacript</label><br>
+        </form>
+    <!-- javacript -->
+        <button onclick="calculoNota()">Calcula!</button>
+    <!-- resultado-->
+        <p id="resultado"></p>
+        <p id="indicacion"></p>
+    </div>
+    </div>
+    <script>
+        /*puntos adicionales*/
+        function calculoNota(){
+            /* entrada de datos*/
+            let notaWordpress=(document.getElementById("wordpress").value);
+            let notaJs=(document.getElementById("js").value);
+            let trabajoWp=document.getElementById("trabajowp")
+            let trabajojs=document.getElementById("trabajojs")
+            /* calculo de nota*/
+            let notaFinal=(75*notaWordpress+25*notaJs)/100;
+            /* trabajos adicionales */
+            if (trabajoWp.checked==true){notaFinal++}
+            if (trabajojs.checked==true){notaFinal++}
+            /* resultado */
+            if (notaFinal>10){notaFinal==10}
+            /* resultados */
+            document.getElementById("resultado").innerHTML="La nota fina es:"+notaFinal;
+            if (notaFinal>=5){
+                document.getElementById("indicacion").innerHTML=
+                "Enhorabuena, estás aprobado!";
+            } else {
+                document.getElementById("indicacion").innerHTML=
+                "Ánimo, tendrás que volver a intentarlo";
+            }
+        }
+    </script>
+</body>
+</html>
